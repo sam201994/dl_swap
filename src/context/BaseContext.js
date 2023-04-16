@@ -20,7 +20,7 @@ export const BaseProvider = props => {
   const [balances, setBalance] = useState({});
   const connectedWalletAddress = wallet?.accounts[0]?.address;
   const tokenList = Object.values(supportedTokens);
-  console.log({ balances });
+
   const getBalance = async connectedWalletAddress => {
     const balances = await getWalletTokenBalances(connectedWalletAddress, tokenList);
     setBalance(balances);
