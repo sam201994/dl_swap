@@ -1,10 +1,10 @@
 import Typography from "components/Typography";
 import { ButtonWrapper, IconButtonWrapper } from "./styles";
 
-const Button = ({ loader = false, text, onClick }) => {
+const Button = ({ disabled, loader = false, text, onClick }) => {
   if (loader) {
     return (
-      <ButtonWrapper loader={loader}>
+      <ButtonWrapper disabled={disabled} loader={loader}>
         <Typography type="p2" color="primary">
           {text}
         </Typography>
@@ -12,7 +12,7 @@ const Button = ({ loader = false, text, onClick }) => {
     );
   }
   return (
-    <ButtonWrapper loader={loader} onClick={onClick}>
+    <ButtonWrapper disabled={disabled} loader={loader} onClick={onClick}>
       <Typography type="p2" color="primary">
         {text}
       </Typography>

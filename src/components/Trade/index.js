@@ -42,11 +42,11 @@ const Trade = () => {
     }
   };
 
+  const isSufficient = wallet ? calIsSufficientBalance(sellValue, fromToken.decimals, balances[fromToken.address]) : true;
+
   const buttonText = () => {
     if (connecting) return "connecting";
     if (wallet) {
-      const isSufficient = calIsSufficientBalance(sellValue, fromToken.decimals, balances[fromToken.address]);
-
       if (isSufficient) return "Swap";
       return `Insufficient ${fromToken.symbol} balance`;
     }
@@ -78,7 +78,7 @@ const Trade = () => {
 
           <ConversionCard quote={quoteData} />
 
-          <Button loader={connecting} onClick={handleConnectWallet} text={buttonText()} />
+          <Button disabled={!isSufficient} loader={connecting} onClick={handleConnectWallet} text={buttonText()} />
           <VectorWrapper />
         </TradeWrapper>
       </Wrapper>
