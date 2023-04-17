@@ -41,7 +41,7 @@ const InputCard = ({ tokenValue = 0, type, onChangeSellValue, usdValue }) => {
     <InputWrapper>
       <InputSectionBox>
         <Typography type="p4" color="secondary">
-          {`$${formatAmountToCommified(totalUSDValue, 2)}`}
+          {`~$${formatAmountToCommified(totalUSDValue, 2)}`}
         </Typography>
         {renderTokenInput()}
       </InputSectionBox>
