@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TradeWrapper = styled.div`
   box-sizing: border-box;
-  width: 464px;
+  width: 460px;
   /* Auto layout */
 
   display: flex;
