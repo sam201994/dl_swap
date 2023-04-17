@@ -31,6 +31,8 @@ export const PercentageSection = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 0px 6px;
+  box-sizing: border-box;
 `;
 
 export const VectorWrapper = styled.div`

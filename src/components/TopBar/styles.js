@@ -8,4 +8,7 @@ export const TopBarWrapper = styled.div`
   gap: 14px;
   width: 100%;
   height: 42px;
+
+  padding: 0px 6px;
+  box-sizing: border-box;
 `;

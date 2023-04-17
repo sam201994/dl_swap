@@ -1,9 +1,29 @@
 import Typography from "components/Typography";
 import TokenSelect from "components/TokenSelect";
 import { formatAmountToCommified } from "utils";
-import { InputWrapper, InputSectionBox, TextInput } from "./styles";
+import { InputWrapper, InputSectionBox, TextInput, TagWrapper, RightSection } from "./styles";
 
 const InputCard = ({ tokenValue = 0, type, onChangeSellValue, usdValue }) => {
+  const renderTokenSection = () => {
+    return (
+      <InputSectionBox style={{ alignItems: "flex-end" }}>
+        <Typography type="p4" color="secondary">
+          {`You ${type}`}
+        </Typography>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          {type === "buy" && (
+            <TagWrapper>
+              <Typography type="p6" color="offwhite">
+                MIN
+              </Typography>
+            </TagWrapper>
+          )}
+          <TokenSelect type={type} />
+        </div>
+      </InputSectionBox>
+    );
+  };
+
   const renderTokenInput = () => {
     const v = formatAmountToCommified(tokenValue);
     if (type === "sell") {
@@ -25,12 +45,7 @@ const InputCard = ({ tokenValue = 0, type, onChangeSellValue, usdValue }) => {
         </Typography>
         {renderTokenInput()}
       </InputSectionBox>
-      <InputSectionBox style={{ alignItems: "flex-end" }}>
-        <Typography type="p4" color="secondary">
-          {`You ${type}`}
-        </Typography>
-        <TokenSelect type={type} />
-      </InputSectionBox>
+      {renderTokenSection()}
     </InputWrapper>
   );
 };

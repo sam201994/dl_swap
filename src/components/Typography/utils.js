@@ -10,6 +10,8 @@ export function calculateFontSize(type) {
       return "14px";
     case "p5":
       return "14px";
+    case "p6":
+      return "8px";
     default:
       return "10px";
   }
@@ -27,6 +29,8 @@ export function calculateLineHeight(type) {
       return "24px";
     case "p5":
       return "18px";
+    case "p6":
+      return "20px";
     default:
       return "10px";
   }
@@ -44,6 +48,8 @@ export function calculateFontWeight(type) {
     case "p4":
     case "p5":
       return "450";
+    case "p6":
+      return "500";
     default:
       return "450";
   }
@@ -55,6 +61,8 @@ export function calculateFontColor(fontColor) {
       return "white";
     case "secondary":
       return "#637488";
+    case "offwhite":
+      return "#E5E5E5";
     default:
       return "white";
   }

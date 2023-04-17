@@ -64,10 +64,10 @@ const Trade = () => {
     >
       <TradeWrapper>
         <TopBar />
-        <InputCard onChangeSellValue={onChangeSellValue} tokenValue={sellValue} type="sell" usdValue={fromTokenUSDValue} />
-        <Divider onClick={handleInterChange} />
-
         <InputCard tokenValue={buyValue} type="buy" usdValue={toTokenUSDValue} />
+
+        <Divider onClick={handleInterChange} />
+        <InputCard onChangeSellValue={onChangeSellValue} tokenValue={sellValue} type="sell" usdValue={fromTokenUSDValue} />
 
         <PercentageSection>
           {[25, 50, 75, 100].map(p => {
