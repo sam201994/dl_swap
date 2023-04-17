@@ -2,6 +2,7 @@ import { useState, useEffect, createContext, useMemo } from "react";
 import { init, useConnectWallet, useSetChain } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
 
+import LogoIcon from "components/Icons/LogoIcon.svg";
 import { getWalletTokenBalances } from "utils";
 import { SupportedChains, getSupportedTokens } from "utils/constants";
 
@@ -11,8 +12,7 @@ const injected = injectedModule();
 
 const appMetadata = {
   name: "DL SWap",
-  // icon: '<SVG_ICON_STRING>',
-  // logo: '<SVG_LOGO_STRING>',
+  icon: LogoIcon,
   description: "Swap tokens",
   recommendedInjectedWallets: [{ name: "MetaMask", url: "https://metamask.io" }],
 };
