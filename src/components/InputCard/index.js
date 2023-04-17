@@ -1,7 +1,7 @@
 import Typography from "components/Typography";
 import TokenSelect from "components/TokenSelect";
 import { formatAmountToCommified } from "utils";
-import { InputWrapper, InputSectionBox, TextInput, TagWrapper, RightSection } from "./styles";
+import { InputWrapper, InputSectionBox, TextInput, TagWrapper } from "./styles";
 
 const InputCard = ({ tokenValue = 0, type, onChangeSellValue, usdValue }) => {
   const renderTokenSection = () => {

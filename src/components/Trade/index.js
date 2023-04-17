@@ -9,7 +9,7 @@ import { Button } from "components/Button";
 import TopBar from "components/TopBar";
 import Divider from "components/Divider";
 import { formatWeiToAmount, parseTokenInputValue, calIsSufficientBalance, calBalanceOfTokenWithPercentage } from "utils";
-import { TradeWrapper, VectorWrapper, PercentageSection } from "./styles";
+import { TradeWrapper, VectorWrapper, PercentageSection, Wrapper } from "./styles";
 
 const Trade = () => {
   const { balances, connect, connecting, wallet } = useContext(BaseContext);
@@ -62,24 +62,26 @@ const Trade = () => {
         alignItems: "center",
       }}
     >
-      <TradeWrapper>
-        <TopBar />
-        <InputCard tokenValue={buyValue} type="buy" usdValue={toTokenUSDValue} />
+      <Wrapper>
+        <TradeWrapper>
+          <TopBar />
+          <InputCard tokenValue={buyValue} type="buy" usdValue={toTokenUSDValue} />
 
-        <Divider onClick={handleInterChange} />
-        <InputCard onChangeSellValue={onChangeSellValue} tokenValue={sellValue} type="sell" usdValue={fromTokenUSDValue} />
+          <Divider onClick={handleInterChange} />
+          <InputCard onChangeSellValue={onChangeSellValue} tokenValue={sellValue} type="sell" usdValue={fromTokenUSDValue} />
 
-        <PercentageSection>
-          {[25, 50, 75, 100].map(p => {
-            return <PercentageCard percentage={p} key={`${p}`} onClick={handlePercentageClick} />;
-          })}
-        </PercentageSection>
+          <PercentageSection>
+            {[25, 50, 75, 100].map(p => {
+              return <PercentageCard percentage={p} key={`${p}`} onClick={handlePercentageClick} />;
+            })}
+          </PercentageSection>
 
-        <ConversionCard quote={quoteData} />
+          <ConversionCard quote={quoteData} />
 
-        <Button loader={connecting} onClick={handleConnectWallet} text={buttonText()} />
-      </TradeWrapper>
-      <VectorWrapper />
+          <Button loader={connecting} onClick={handleConnectWallet} text={buttonText()} />
+          <VectorWrapper />
+        </TradeWrapper>
+      </Wrapper>
     </div>
   );
 };

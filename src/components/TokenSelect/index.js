@@ -57,7 +57,7 @@ const TokenSelect = ({ token, type }) => {
           <img src={selectedToken.logoURI} width={32} height={32} alt="" />
         </IconWrapper>
 
-        <Typography type="p4" color="primary">
+        <Typography type="p4" color="offwhite">
           {selectedToken.symbol}
         </Typography>
 

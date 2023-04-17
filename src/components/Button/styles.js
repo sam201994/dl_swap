@@ -6,10 +6,10 @@ const ButtonWrapper = styled.div`
   align-items: center;
   background: #e5e54b;
   border-radius: 14px;
-  width: 100%;
-  height: 50px;
+  height: 54px;
   filter: ${props => (props.loader ? "brightness(40%)" : "brightness(100%)")};
   cursor: ${props => (props.loader ? "default" : "pointer")};
+  width: calc(100% - 12px);
 `;
 
 const IconButtonWrapper = styled.div`
