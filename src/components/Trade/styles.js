@@ -15,7 +15,7 @@ export const TradeWrapper = styled.div`
 
   background: #1e1e1e;
   border-radius: 30px;
-  z-index: -2;
+  z-index: -3;
 `;
 
 export const PercentageSection = styled.div`
@@ -31,7 +31,7 @@ export const VectorWrapper = styled.div`
   height: 202px;
   background: linear-gradient(135deg, #e5e54b 2.88%, #ef5322 98.14%);
   filter: blur(109px);
-  z-index: -1;
+  z-index: -2;
 
   top: 50%;
   left: 50%;
@@ -39,7 +39,7 @@ export const VectorWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  z-index: 1;
+  z-index: 0;
   border-radius: 30px;
   background: radial-gradient(80.69% 208.78% at 108.28% 112.58%, #6b4e30 0%, rgba(183, 38, 38, 0) 100%),
     radial-gradient(80.38% 222.5% at -13.75% -12.36%, #e5e54b 0%, rgba(255, 255, 255, 0) 100%);
