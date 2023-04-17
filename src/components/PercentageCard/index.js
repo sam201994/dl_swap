@@ -4,7 +4,7 @@ import { PercentageWrapper } from "./styles";
 const PercentageCard = ({ percentage, onClick }) => {
   return (
     <PercentageWrapper onClick={() => onClick(percentage)}>
-      <Typography type="p4" color="secondary">
+      <Typography type="p5" color="secondary">
         {`${percentage}%`}
       </Typography>
     </PercentageWrapper>

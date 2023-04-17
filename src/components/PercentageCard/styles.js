@@ -4,7 +4,7 @@ export const PercentageWrapper = styled.div`
   background: #101010;
   border: 1.5px solid #1d2a43;
   border-radius: 7px;
-  padding: 6px 27px;
+  padding: 8px 29px;
 
   display: flex;
   flex-direction: row;
