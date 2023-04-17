@@ -16,13 +16,18 @@ init({
 
 export const BaseProvider = props => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+
   const supportedTokens = sampleTokens;
+
+  // balance is stored in wei format
   const [balances, setBalance] = useState({});
+
   const connectedWalletAddress = wallet?.accounts[0]?.address;
+
   const tokenList = Object.values(supportedTokens);
 
   const getBalance = async connectedWalletAddress => {
-    const balances = await getWalletTokenBalances(connectedWalletAddress, tokenList);
+    const balances = await getWalletTokenBalances(connectedWalletAddress, supportedTokens);
     setBalance(balances);
   };
 

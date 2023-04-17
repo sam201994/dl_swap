@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 import { BaseContext } from "context/BaseContext";
 import { SwapContext } from "context/SwapContext";
@@ -8,12 +8,13 @@ import ConversionCard from "components/ConversionCard";
 import { Button } from "components/Button";
 import TopBar from "components/TopBar";
 import Divider from "components/Divider";
-import { formatWeiToAmount, parseTokenInputValue } from "utils";
+import { formatWeiToAmount, parseTokenInputValue, calIsSufficientBalance } from "utils";
 import { TradeWrapper, VectorWrapper, PercentageSection } from "./styles";
 
 const Trade = () => {
-  const { connect, connecting, wallet } = useContext(BaseContext);
-  const { handleInterChange, quoteData, sellValue, setSellValue, toToken, toTokenUSDValue, fromTokenUSDValue } = useContext(SwapContext);
+  const { balances, connect, connecting, wallet } = useContext(BaseContext);
+  const { handleInterChange, quoteData, sellValue, setSellValue, fromToken, toToken, toTokenUSDValue, fromTokenUSDValue } =
+    useContext(SwapContext);
 
   const buyValue = sellValue * formatWeiToAmount(quoteData?.toTokenAmount, toToken?.decimals);
 
@@ -32,6 +33,17 @@ const Trade = () => {
       connect();
     }
   };
+
+  const isSufficient = calIsSufficientBalance(sellValue, balances[fromToken.address]);
+
+  const buttonText = useMemo(() => {
+    if (connecting) return "connecting";
+    if (wallet) {
+      if (isSufficient) return "Swap";
+      return `Insufficient ${fromToken.symbol} balance`;
+    }
+    return "Connect Wallet";
+  }, [connecting, wallet, fromToken.symbol, isSufficient]);
 
   return (
     <div
@@ -57,7 +69,7 @@ const Trade = () => {
 
         <ConversionCard quote={quoteData} />
 
-        <Button loader={connecting} onClick={handleConnectWallet} text={connecting ? "connecting" : wallet ? "Swap" : "Connect Wallet"} />
+        <Button loader={connecting} onClick={handleConnectWallet} text={buttonText} />
       </TradeWrapper>
       <VectorWrapper />
     </div>

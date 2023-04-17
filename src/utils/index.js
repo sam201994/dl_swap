@@ -68,3 +68,7 @@ export const parseTokenInputValue = value => {
   const dot = rectifiedValue.includes(".") ? "." : "";
   return `${wholePart}${dot}${decimalPart}`;
 };
+
+export const calIsSufficientBalance = value => {
+  return true;
+};
