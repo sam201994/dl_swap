@@ -12,7 +12,9 @@ const TokenSelect = ({ token, type }) => {
   const { handleInterChange, setFromToken, setToToken, fromToken, toToken } = useContext(SwapContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const ref = useRef(null);
+  const dropdownRef = useRef(null);
+  const wrapperRef = useRef(null);
+
   const selectedToken = type === "buy" ? toToken : fromToken;
 
   useEffect(() => {
@@ -23,7 +25,9 @@ const TokenSelect = ({ token, type }) => {
   }, []);
 
   const handleClickOutside = event => {
-    if (ref.current && !ref.current.contains(event.target)) {
+    if (wrapperRef.current && wrapperRef.current.contains(event.target)) {
+      setShowDropdown(p => !p);
+    } else if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setShowDropdown(false);
     }
   };
@@ -46,13 +50,9 @@ const TokenSelect = ({ token, type }) => {
     setShowDropdown(false);
   };
 
-  const handleToggleDropdown = () => {
-    setShowDropdown(p => !p);
-  };
-
   return (
     <div style={{ position: "relative" }}>
-      <SelectWrapper onClick={handleToggleDropdown}>
+      <SelectWrapper ref={wrapperRef}>
         <IconWrapper>
           <img src={selectedToken.logoURI} width={32} height={32} alt="" />
         </IconWrapper>
@@ -65,7 +65,7 @@ const TokenSelect = ({ token, type }) => {
           <DownArrowIcon />
         </IconWrapper>
       </SelectWrapper>
-      <div ref={ref}>
+      <div ref={dropdownRef}>
         {showDropdown && (
           <DowpDownWrapper>
             {tokenList.map(option => {

@@ -24,7 +24,7 @@ export const DowpDownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: #141822;
-  width: 150px;
+  width: 200px;
   border-radius: 10px;
   z-index: 2;
 
@@ -33,6 +33,8 @@ export const DowpDownWrapper = styled.div`
   max-height: 300px;
 
   left: 0;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 `;
 
 export const OptionWrapper = styled.div`
@@ -40,8 +42,8 @@ export const OptionWrapper = styled.div`
   flex-direction: row;
   background: #141822;
   cursor: pointer;
-
-  padding: 5px 10px;
+  width: 100%;
+  padding: 10px;
 `;
 
 export const OptionRightSection = styled.div`

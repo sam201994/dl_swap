@@ -13,7 +13,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const InputSectionBox = styled.div`
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
 
@@ -31,8 +31,6 @@ export const TextInput = styled.input`
 
   &:focus {
     outline: none;
-  }
-  &:hover {
   }
 `;
 

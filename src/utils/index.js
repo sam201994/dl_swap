@@ -75,7 +75,7 @@ export const calIsSufficientBalance = (sellValue, sellValueDecimal, balance) => 
   const sellValueInWei = formatAmountToWei(sellValue, sellValueDecimal);
   const a = BigNumber.from(sellValueInWei);
   const b = BigNumber.from(balance);
-  return b.gt(a);
+  return b.gte(a);
 };
 
 // balance:wei format, percentage: number => normal number

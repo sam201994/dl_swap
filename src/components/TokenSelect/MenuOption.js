@@ -4,7 +4,7 @@ import { IconWrapper, OptionRightSection, OptionWrapper } from "./styles";
 
 const MenuOption = ({ option, selected, onClick, balance }) => {
   return (
-    <OptionWrapper onClick={() => onClick(option)} style={selected ? { background: "#2b3f64" } : {}}>
+    <OptionWrapper onClick={() => onClick(option)} style={selected ? { background: "rgb(35 45 63)" } : {}}>
       <IconWrapper>
         <img src={option.logoURI} width={30} height={32} alt="" />
       </IconWrapper>
@@ -13,7 +13,7 @@ const MenuOption = ({ option, selected, onClick, balance }) => {
           {option.name}
         </Typography>
 
-        <Typography type="p5" color="secondary">
+        <Typography type="p5" color="secondary" customStyles={{ fontSize: "12px" }}>
           {`${formatWeiToCommified(balance, option.decimal)} ${option.symbol}`}
         </Typography>
       </OptionRightSection>

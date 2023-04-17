@@ -26,11 +26,12 @@ const InputCard = ({ tokenValue = 0, type, onChangeSellValue, usdValue }) => {
 
   const renderTokenInput = () => {
     const v = formatAmountToCommified(tokenValue);
+    let fontSize = v.length > 12 ? "18px" : "24px";
     if (type === "sell") {
       return <TextInput onChange={onChangeSellValue} value={v} />;
     }
     return (
-      <Typography type="p1" color="primary">
+      <Typography type={"p1"} color="primary" customStyles={{ fontSize }}>
         {`${v}`}
       </Typography>
     );
