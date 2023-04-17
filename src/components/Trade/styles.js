@@ -39,7 +39,7 @@ export const VectorWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  z-index: -3;
+  z-index: 1;
   border-radius: 30px;
   background: radial-gradient(80.69% 208.78% at 108.28% 112.58%, #6b4e30 0%, rgba(183, 38, 38, 0) 100%),
     radial-gradient(80.38% 222.5% at -13.75% -12.36%, #e5e54b 0%, rgba(255, 255, 255, 0) 100%);
