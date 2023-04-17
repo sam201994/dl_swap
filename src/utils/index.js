@@ -70,11 +70,20 @@ export const parseTokenInputValue = value => {
 };
 
 // sellValue:normal number, balance:wei format => boolean
-export const calIsSufficientBalance = (sellValue, balance) => {
-  return true;
+export const calIsSufficientBalance = (sellValue, sellValueDecimal, balance) => {
+  console.log({ sellValue, sellValueDecimal, balance });
+  if (!sellValue) return true;
+  const sellValueInWei = formatAmountToWei(sellValue, sellValueDecimal);
+  const a = BigNumber.from(sellValueInWei);
+  const b = BigNumber.from(balance);
+  return b.gt(a) > 0;
 };
 
 // balance:wei format, percentage: number => normal number
-export const calBalanceOfTokenWithPercentage = (balance, percentage) => {
-  return "1232";
+export const calBalanceOfTokenWithPercentage = (balance, balanceDecimal, percentage) => {
+  console.log({ balance, balanceDecimal, percentage });
+  const b = BigNumber.from(balance);
+  const p = BigNumber.from(percentage);
+  const result = b.mal(p);
+  return formatWeiToAmount(result, balanceDecimal);
 };

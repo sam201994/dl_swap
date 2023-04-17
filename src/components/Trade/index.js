@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 
 import { BaseContext } from "context/BaseContext";
 import { SwapContext } from "context/SwapContext";
@@ -35,21 +35,23 @@ const Trade = () => {
   };
 
   const handlePercentageClick = percentage => {
-    const balanceOfFromToken = balances[fromToken.address];
-    const sValue = calBalanceOfTokenWithPercentage(balanceOfFromToken, percentage);
-    setSellValue(sValue);
+    if (wallet) {
+      const balanceOfFromToken = balances[fromToken.address];
+      const sValue = calBalanceOfTokenWithPercentage(balanceOfFromToken, fromToken.decimals, percentage);
+      setSellValue(sValue);
+    }
   };
 
-  const isSufficient = calIsSufficientBalance(sellValue, balances[fromToken.address]);
-
-  const buttonText = useMemo(() => {
+  const buttonText = () => {
     if (connecting) return "connecting";
     if (wallet) {
+      const isSufficient = calIsSufficientBalance(sellValue, fromToken.decimals, balances[fromToken.address]);
+
       if (isSufficient) return "Swap";
       return `Insufficient ${fromToken.symbol} balance`;
     }
     return "Connect Wallet";
-  }, [connecting, wallet, fromToken.symbol, isSufficient]);
+  };
 
   return (
     <div
@@ -75,7 +77,7 @@ const Trade = () => {
 
         <ConversionCard quote={quoteData} />
 
-        <Button loader={connecting} onClick={handleConnectWallet} text={buttonText} />
+        <Button loader={connecting} onClick={handleConnectWallet} text={buttonText()} />
       </TradeWrapper>
       <VectorWrapper />
     </div>

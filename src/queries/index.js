@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 
-export const useGetQuote = (fromTokenAddress, toTokenAddress, amount) => {
+export const useGetQuote = (fromTokenAddress, toTokenAddress, amount, chainId) => {
   return useQuery(
-    [fromTokenAddress, toTokenAddress, amount],
+    [fromTokenAddress, toTokenAddress, amount, chainId],
     async () => {
       const config = {
         headers: {
@@ -11,17 +11,17 @@ export const useGetQuote = (fromTokenAddress, toTokenAddress, amount) => {
         },
         params: { fromTokenAddress, toTokenAddress, amount: amount },
       };
-      return await axios.get("https://api.1inch.io/v5.0/137/quote", config);
+      return await axios.get(`https://api.1inch.io/v5.0/${chainId}/quote`, config);
     },
     {
       enabled: fromTokenAddress.length && toTokenAddress.length && amount !== "" && amount !== "0" && amount > 0,
-      refetchInterval: 10000,
+      // refetchInterval: 10000,
     },
   );
 };
 
 export const useGetTokenUSDPrices = (tokenAddresses, supportedTokens) => {
-  const coinGeckoIds = tokenAddresses.map(tokenAddress => supportedTokens[tokenAddress].coinGeckoId);
+  const coinGeckoIds = tokenAddresses.map(tokenAddress => supportedTokens[tokenAddress]?.coinGeckoId);
   return useQuery(
     coinGeckoIds,
     async () => {
@@ -34,14 +34,14 @@ export const useGetTokenUSDPrices = (tokenAddresses, supportedTokens) => {
       return await axios.get("https://api.coingecko.com/api/v3/simple/price", config);
     },
     {
-      refetchOnWindowFocus: true,
-      refetchInterval: 10000,
+      // refetchOnWindowFocus: true,
+      // refetchInterval: 10000,
     },
   );
 };
 
 // Not used yet. Future scope
-export const useSwapTokens = (fromTokenAddress, toTokenAddress, amount, fromAddress) => {
+export const useSwapTokens = (fromTokenAddress, toTokenAddress, amount, fromAddress, chainId) => {
   return useQuery(
     [fromTokenAddress, toTokenAddress, amount, fromAddress],
     async () => {
@@ -57,7 +57,7 @@ export const useSwapTokens = (fromTokenAddress, toTokenAddress, amount, fromAddr
           slippage: 1,
         },
       };
-      return await axios.get("https://api.1inch.io/v5.0/137/swap", config);
+      return await axios.get(`https://api.1inch.io/v5.0/${chainId}/swap`, config);
     },
     {
       refetchOnWindowFocus: false,
