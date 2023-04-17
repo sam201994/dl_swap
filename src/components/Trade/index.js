@@ -8,7 +8,7 @@ import ConversionCard from "components/ConversionCard";
 import { Button } from "components/Button";
 import TopBar from "components/TopBar";
 import Divider from "components/Divider";
-import { formatWeiToAmount, parseTokenInputValue, calIsSufficientBalance } from "utils";
+import { formatWeiToAmount, parseTokenInputValue, calIsSufficientBalance, calBalanceOfTokenWithPercentage } from "utils";
 import { TradeWrapper, VectorWrapper, PercentageSection } from "./styles";
 
 const Trade = () => {
@@ -32,6 +32,12 @@ const Trade = () => {
     } else {
       connect();
     }
+  };
+
+  const handlePercentageClick = percentage => {
+    const balanceOfFromToken = balances[fromToken.address];
+    const sValue = calBalanceOfTokenWithPercentage(balanceOfFromToken, percentage);
+    setSellValue(sValue);
   };
 
   const isSufficient = calIsSufficientBalance(sellValue, balances[fromToken.address]);
@@ -63,7 +69,7 @@ const Trade = () => {
 
         <PercentageSection>
           {[25, 50, 75, 100].map(p => {
-            return <PercentageCard percentage={p} key={`${p}`} />;
+            return <PercentageCard percentage={p} key={`${p}`} onClick={handlePercentageClick} />;
           })}
         </PercentageSection>
 

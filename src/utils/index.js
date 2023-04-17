@@ -69,6 +69,12 @@ export const parseTokenInputValue = value => {
   return `${wholePart}${dot}${decimalPart}`;
 };
 
-export const calIsSufficientBalance = value => {
+// sellValue:normal number, balance:wei format => boolean
+export const calIsSufficientBalance = (sellValue, balance) => {
   return true;
+};
+
+// balance:wei format, percentage: number => normal number
+export const calBalanceOfTokenWithPercentage = (balance, percentage) => {
+  return "1232";
 };
