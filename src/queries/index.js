@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 export const useGetQuote = (fromTokenAddress, toTokenAddress, amount, chainId) => {
   return useQuery(
-    [fromTokenAddress, toTokenAddress, amount, chainId],
+    [fromTokenAddress, toTokenAddress, amount],
     async () => {
       const config = {
         headers: {
@@ -15,7 +15,7 @@ export const useGetQuote = (fromTokenAddress, toTokenAddress, amount, chainId) =
     },
     {
       enabled: fromTokenAddress.length && toTokenAddress.length && amount !== "" && amount !== "0" && amount > 0,
-      // refetchInterval: 10000,
+      refetchInterval: 10000,
     },
   );
 };

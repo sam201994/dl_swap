@@ -21,13 +21,18 @@ export const SwapProvider = props => {
 
   const {
     data: quoteData,
-    refetch,
+    refetch: refetchQuote,
     isLoading,
     isFetching,
   } = useGetQuote(fromToken.address, toToken.address, formatAmountToWei(1, fromToken.decimals), connectedChain);
 
-  const { data } = useGetTokenUSDPrices([fromToken.address, toToken.address], supportedTokens);
+  const { data, refetch: refetchPrice } = useGetTokenUSDPrices([fromToken.address, toToken.address], supportedTokens);
   const usdValues = data?.data;
+
+  const handleRefresh = () => {
+    refetchQuote();
+    refetchPrice();
+  };
 
   const handleInterChange = () => {
     const temp = { ...fromToken };
@@ -49,8 +54,8 @@ export const SwapProvider = props => {
         sellValue,
         setSellValue,
         handleInterChange,
-        refetchQuote: refetch,
         quoteDataLoading: isLoading || isFetching,
+        handleRefresh,
       }}
     >
       {props.children}

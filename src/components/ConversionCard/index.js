@@ -20,7 +20,7 @@ const ConversionCard = ({ quote }) => {
           </Typography>
         ) : (
           <Typography type="p3">
-            {`1 ${fromToken?.symbol} = ${q} ${toToken?.symbol} `}
+            {`1 ${fromToken?.symbol} = ${formatAmountToCommified(q, 2)} ${toToken?.symbol} `}
             <Typography type="p3" color="secondary">
               {`($${formatAmountToCommified(fromTokenUSDValue)})`}
             </Typography>

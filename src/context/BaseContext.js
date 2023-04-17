@@ -9,9 +9,21 @@ export const BaseContext = createContext();
 
 const injected = injectedModule();
 
+const appMetadata = {
+  name: "DL SWap",
+  // icon: '<SVG_ICON_STRING>',
+  // logo: '<SVG_LOGO_STRING>',
+  description: "Swap tokens",
+  recommendedInjectedWallets: [{ name: "MetaMask", url: "https://metamask.io" }],
+};
+
 init({
   wallets: [injected],
   chains: SupportedChains,
+  connect: {
+    autoConnectLastWallet: true,
+  },
+  appMetadata,
 });
 
 export const BaseProvider = props => {
@@ -20,11 +32,8 @@ export const BaseProvider = props => {
 
   const [
     {
-      chains, // the list of chains that web3-onboard was initialized with
       connectedChain, // the current chain the user's wallet is connected to
-      settingChain, // boolean indicating if the chain is in the process of being set
     },
-    setChain, // function to call to initiate user to switch chains in their wallet
   ] = useSetChain();
 
   const chainId = connectedChain ? parseInt(connectedChain.id, 16) : 137;
@@ -46,8 +55,6 @@ export const BaseProvider = props => {
     getBalance(connectedWalletAddress);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connectedWalletAddress, chainId]);
-
-  console.log({ chainId, supportedTokens });
 
   return (
     <BaseContext.Provider

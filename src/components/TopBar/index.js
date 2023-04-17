@@ -6,10 +6,10 @@ import { IconButton } from "components/Button";
 import { TopBarWrapper } from "./styles";
 
 const TopBar = () => {
-  const { refetchQuote } = useContext(SwapContext);
+  const { handleRefresh } = useContext(SwapContext);
   return (
     <TopBarWrapper>
-      <IconButton onClick={() => refetchQuote()}>
+      <IconButton onClick={handleRefresh}>
         <RefreshIcon />
       </IconButton>
       <IconButton>

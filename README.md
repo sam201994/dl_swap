@@ -11,6 +11,8 @@ This App allows exchange of two tokens, similar to [1Inch](https://app.1inch.io/
 3. Tokens supported - **AAVE**, **MATIC**, **Tether USD**
 4. The maximum token which can be exchanged is **99,909,999.999999** units, due to UI constraints
 5. Connects to Metamask but does not swap tokens yet
+6. quote-api refetches data every **10** seconds
+7. Due to rate limitation on coin-gecko public api, polling has been disabled so to fetch the latest USD value, we need to click on the refech button
 
 ## Future Scope
 
@@ -38,4 +40,4 @@ Main libraries and frameworks used:
 - Alchemy - Blockchain node provider.
 - 1Inch APIs - Used to get quote between two tokens and to perform swap operation.
 - CoinGecko APIs - Used to get latest dollar values of the tokens.
-- Web3-Onboard - librarry used to implement wallet connection.
+- Web3-Onboard - library used to implement wallet connection.
